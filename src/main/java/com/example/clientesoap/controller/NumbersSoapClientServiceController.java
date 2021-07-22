@@ -3,7 +3,6 @@ package com.example.clientesoap.controller;
 import com.example.clientesoap.soap.SoapClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,18 @@ public class NumbersSoapClientServiceController {
      */
     private static final Logger log = LoggerFactory.getLogger(NumbersSoapClientServiceController.class);
 
-    @Autowired
-    private SoapClient soapClient;
+    /**
+     * References to SoapClient service.
+     */
+    private final SoapClient soapClient;
+
+    /**
+     * Constructor of the class.
+     * @param soapClient
+     */
+    public NumbersSoapClientServiceController(SoapClient soapClient) {
+        this.soapClient = soapClient;
+    }
 
     /**
      * web service to get books.
@@ -38,7 +47,7 @@ public class NumbersSoapClientServiceController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             log.error("[towords]", e);
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("error de servicio", HttpStatus.BAD_REQUEST);
         }
     }
 }
