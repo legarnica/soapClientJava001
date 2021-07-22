@@ -15,7 +15,7 @@ public class SoapConfiguration {
     /**
      * Literal representation of the context.
      */
-    private final static String CONTEXT_PATH = "webservicesserver";
+    private static final String CONTEXT_PATH = "webservicesserver";
 
     /**
      * References to SoapClient service.
@@ -45,6 +45,8 @@ public class SoapConfiguration {
 
     /**
      * Method that configure and return  HttpComponentsMessageSender to performance the POST.
+     * Allows to use a pre-configured HttpClient instance, potentially with authentication,
+     * HTTP connection pooling, etc.
      *
      * @return HttpComponentsMessageSender object.
      */
